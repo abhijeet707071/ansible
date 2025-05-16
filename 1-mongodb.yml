@@ -1,0 +1,8 @@
+- name: Install MongoDB
+  host: all
+  become: yes
+  tasks:
+    - name: Add MongoDB repository
+      ansible.builtin.copy:
+        src: repo-files/mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
