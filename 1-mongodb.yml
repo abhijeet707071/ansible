@@ -1,5 +1,5 @@
 - name: Install MongoDB
-  host: all
+  hosts: all
   become: yes
   vars:
     component: mongodb
