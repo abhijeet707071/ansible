@@ -1,0 +1,8 @@
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ component }}"
+
+- name: Install Package
+  ansible.builtin.dnf:
+    name: bash-completion
+    state: present

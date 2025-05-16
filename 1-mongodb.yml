@@ -4,9 +4,8 @@
   vars:
     component: mongodb
   tasks:
-    - name: Set a hostname
-      ansible.builtin.hostname:
-        name: "{{ component }}"
+    - name: Import Task
+      ansible.builtin.import_tasks:
 
     - name: Add MongoDB repository
       ansible.builtin.copy:
@@ -20,7 +19,7 @@
           - bash-completion
         state: present
 
-    - name: Long form task does not
+    - name: Modify MongoDB configuration
       ansible.builtin.replace:
         path: /etc/mongod.conf
         regexp: '127.0.0.1'
