@@ -1,0 +1,12 @@
+- name: Setup mongodb repo
+  ansible.builtin.copy:
+    src: repo-files/mongo.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Installing MongoDB client to load the schema.
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: present
+
+- name: Loading the schema for the {{component}} application to mongodb.
+  ansible.builtin.shell: mongosh --host mongodb.learntechnology.space </app/db/master-data.js
