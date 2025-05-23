@@ -1,6 +1,6 @@
 - name: Roboshop Component Setup - Shipping
   hosts: all
-  becoeme: yes
+  become: yes
   vars:
     component: shipping
     schema: mysql
