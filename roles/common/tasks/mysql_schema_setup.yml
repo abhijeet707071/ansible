@@ -6,7 +6,7 @@
 - name: Loading all schema files into MySQL.
   ansible.builtin.shell: |
     for file in /app/db/schema.sql /app/db/app-user.sql /app/db/master-data.sql; do
-      mysql -h mysql-dev.learntechnology.cloud -uroot -p{{ mysql_root_password }} < "$file"
+      mysql -h mysql.learntechnology.space -uroot -p{{ mysql_root_password }} < "$file"
     done
   args:
     executable: /bin/bash
