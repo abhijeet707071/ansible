@@ -1,0 +1,37 @@
+- name: Disable default NodeJS module
+  ansible.builtin.command:
+    cmd: dnf module disable nodejs -y
+  register: disable_nodejs
+  changed_when: "'Nothing to do' not in disable_nodejs.stdout"
+
+- name: Enable NodeJS 20 module
+  ansible.builtin.command:
+    cmd: dnf module enable nodejs:20 -y
+  register: enable_nodejs
+  changed_when: "'Nothing to do' not in enable_nodejs.stdout"
+
+- name: Install NodeJS
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: Application Setup - Import common role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: application-setup.yml
+
+- name: Install NodeJS dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: Schema Setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: schema_setup.yml
+    when: schema is defined
+
+- name: SystemD service setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd_setup.yml

@@ -1,9 +1,8 @@
-- name: Roboshop Setup
+- name: Roboshop Setup - {{component}}
   hosts: all
   become: yes
   vars:
-    component: catalogue
-    schema: mongodb
+    component: user
   tasks:
     - name: Pre-requisite Task
       ansible.builtin.import_tasks: common.yml
