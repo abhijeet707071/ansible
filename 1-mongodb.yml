@@ -5,7 +5,7 @@
     component: mongodb
   tasks:
     - name: Import Task
-      ansible.builtin.import_tasks:
+      ansible.builtin.import_tasks: common.yml
 
     - name: Add MongoDB repository
       ansible.builtin.copy:
