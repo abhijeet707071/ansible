@@ -26,4 +26,6 @@
         chdir: /app
 
     - name: Import task from systemd_setup.yml
-      ansible.builtin.import_tasks: systemd_setup.yml
+      ansible.builtin.role:
+        name: common
+        tasks_from: systemd_setup.yml
