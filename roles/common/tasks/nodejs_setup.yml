@@ -29,7 +29,7 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: schema_setup.yml
-    when: schema is defined
+  when: schema is defined
 
 - name: SystemD service setup
   ansible.builtin.import_role:
