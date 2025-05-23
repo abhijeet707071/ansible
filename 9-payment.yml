@@ -1,0 +1,8 @@
+- name: Roboshop Component Setup - Payment
+  hosts: all
+  become: yes
+  vars:
+    component: payment
+  tasks:
+    - name: Pre-requisite Task
+      ansible.builtin.import_tasks: common.yml

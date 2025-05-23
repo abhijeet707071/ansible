@@ -19,7 +19,7 @@
         tasks_from: application-setup.yml
 
     - name: Building the application using Maven.
-      ansible.builtin.shell: mvn clean package ; mv /app/target/${component}-1.0.jar /app/${component}.jar
+      ansible.builtin.shell: mvn clean package ; mv /app/target/{{component}}-1.0.jar /app/{{component}}.jar
       args:
         chdir: /app
 
