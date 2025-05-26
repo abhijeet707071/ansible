@@ -1,0 +1,13 @@
+- name: Roboshop Setup - {{component}}
+  hosts: all
+  become: yes
+  vars:
+    component: user
+  tasks:
+    - name: Pre-requisite Task
+      ansible.builtin.import_tasks: common.yml
+
+    - name: Import Role to setup {{component}}
+      ansible.builtin.import_role:
+        name: common
+        tasks_from: nodejs_setup.yml

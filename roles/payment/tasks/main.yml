@@ -1,0 +1,31 @@
+- name: Roboshop Component Setup - Payment
+  hosts: all
+  become: yes
+  vars:
+    component: payment
+  tasks:
+    - name: Pre-requisite Task
+      ansible.builtin.import_tasks: common.yml
+
+    - name: Install Python 3
+      ansible.builtin.dnf:
+        name:
+          - python3
+          - gcc
+          - python3-devel
+        state: present
+
+    - name: Application Setup - Import common role
+      ansible.builtin.import_role:
+        name: common
+        tasks_from: application-setup.yml
+
+    - name: Installing the required Python dependencies.
+      ansible.builtin.shell: pip3 install -r requirements.txt
+      args:
+        chdir: /app
+
+    - name: Import task from systemd_setup.yml
+      ansible.builtin.import_role:
+        name: common
+        tasks_from: systemd_setup.yml
