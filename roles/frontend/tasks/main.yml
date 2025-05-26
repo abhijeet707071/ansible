@@ -13,6 +13,7 @@
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
+  no_log: true
 
 - name: Creating default Nginx content.
   ansible.builtin.file:
